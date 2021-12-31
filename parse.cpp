@@ -1,9 +1,11 @@
 #include "parse.h"
-
+#include <QApplication>
+#include <QProcess>
 
 // check these values
 Token token = {TokenType::NUMBER, ""};
 double Xunknown = 0;
+bool errMsg;
 
 void match(enum TokenType expectedTokenType){
   // advances the token to the next char
@@ -12,8 +14,11 @@ void match(enum TokenType expectedTokenType){
 }
 
 void error(void){
-  fprintf(stderr, "Error\n");
-  exit(1);
+//  fprintf(stderr, "Error\n");
+//  exit(1);
+//    qApp->quit();
+//    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+    errMsg = true;
 }
 
 TreeNode* equ(void){

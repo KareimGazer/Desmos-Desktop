@@ -22,7 +22,9 @@ private slots:
     void plot();
     void on_plotButton_clicked();
     void on_clearButton_clicked();
-    double calcBasic(double x);
+    void setupCalculations(double step); // sets the points to be drawn
+    void getEqnText(); // gets the equation text
+    void setLimits(); // set min and max limits of the equation
 
 private:
     Ui::MainWindow *ui;

@@ -5,6 +5,7 @@
 
 extern Token token; // the global token variable (current next token)
 extern double Xunknown;
+extern bool errMsg;
 
 /*
  input: void
