@@ -11,11 +11,15 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    qcustomplot.cpp
+    parse.cpp \
+    qcustomplot.cpp \
+    scan.cpp
 
 HEADERS += \
     mainwindow.h \
-    qcustomplot.h
+    parse.h \
+    qcustomplot.h \
+    scan.h
 
 FORMS += \
     mainwindow.ui

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "parse.h"
 
 #define POINTS_NO 1000
 
@@ -8,13 +9,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    // this->xPoints = new QVector<double>(1000);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    // ui->customPlot->addGraph();
 }
 
 void MainWindow::plot()
@@ -52,14 +51,20 @@ void MainWindow::on_plotButton_clicked()
 
     double step = (xMax - xMin) / POINTS_NO;
 
+    inputText = inputEqn.toStdString();
+    inputTextIdx = 0; inputTextLimit = inputText.size(); isError = false;
+    TreeNode * root;
+    token = getToken(); // initialize the token
+    root = equ(); // build the tree
+
     xPoints = QVector<double>(POINTS_NO);
     yPoints = QVector<double>(POINTS_NO);
     double x;
     for (int i=0; i<POINTS_NO; ++i)
     {
-      x = xMin + i * step;
-      xPoints[i] = x;
-      yPoints[i] = calc(x); // exponentially decaying cosine
+      Xunknown = xMin + i * step;
+      xPoints[i] = Xunknown;
+      yPoints[i] = calc(root); // exponentially decaying cosine
     }
     plot();
 }
@@ -72,7 +77,7 @@ void MainWindow::on_clearButton_clicked()
     plot();
 }
 
-double MainWindow::calc(double x)
+double MainWindow::calcBasic(double x)
 {
     return x*x;
 }

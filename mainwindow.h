@@ -22,7 +22,7 @@ private slots:
     void plot();
     void on_plotButton_clicked();
     void on_clearButton_clicked();
-    double calc(double x);
+    double calcBasic(double x);
 
 private:
     Ui::MainWindow *ui;
