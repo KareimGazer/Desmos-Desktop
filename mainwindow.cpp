@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "parse.h"
+#include <float.h>
 
 #define POINTS_NO 1000
 
@@ -59,10 +60,11 @@ void MainWindow::on_plotButton_clicked()
 
     xPoints = QVector<double>(POINTS_NO);
     yPoints = QVector<double>(POINTS_NO);
-    double x;
     for (int i=0; i<POINTS_NO; ++i)
     {
       Xunknown = xMin + i * step;
+      Xunknown = (Xunknown<FLT_EPSILON && Xunknown>0)?FLT_EPSILON:Xunknown;
+      Xunknown = (Xunknown>-FLT_EPSILON && Xunknown<0)?-FLT_EPSILON:Xunknown;
       xPoints[i] = Xunknown;
       yPoints[i] = calc(root); // exponentially decaying cosine
     }
